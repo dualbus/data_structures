@@ -1,0 +1,147 @@
+#include <stdlib.h>
+
+typedef struct node {
+    int label;
+    struct node *left;
+    struct node *right;
+}           node_t;
+
+node_t *    node_t_new(int);
+void        node_t_delete(node_t *);
+node_t *    node_t_insert(node_t *, int);
+void        node_t_preorder(node_t *);
+void        node_t_inorder(node_t *);
+void        node_t_postorder(node_t *);
+
+typedef struct tree {
+    struct node *root;
+    size_t length;
+}           tree_t;
+
+tree_t *    tree_t_new();
+void        tree_t_delete(tree_t *);
+
+void        tree_t_insert(tree_t *, int);
+void        tree_t_preorder(tree_t *);
+void        tree_t_inorder(tree_t *);
+void        tree_t_postorder(tree_t *);
+
+int
+main()
+{
+    tree_t *tree = tree_t_new();
+    tree_t_insert(tree, 10);
+    tree_t_insert(tree, 9);
+    tree_t_insert(tree, 2);
+    tree_t_insert(tree, 20);
+    tree_t_insert(tree, 5);
+    puts("preorder()");
+    tree_t_preorder(tree);
+    puts("inorder()");
+    tree_t_inorder(tree);
+    puts("postorder()");
+    tree_t_postorder(tree);
+    return 0;
+}
+
+node_t *
+node_t_new(int label)
+{
+    node_t *node = (node_t *)malloc(sizeof(node_t));
+    if(NULL != node) {
+        node->label = label;
+        node->left = NULL;
+        node->right = NULL;
+    }
+    return node;
+}
+
+void
+node_t_delete(node_t *node)
+{
+}
+
+node_t *
+node_t_insert(node_t *node, int label)
+{
+    if(NULL == node) {
+        node = node_t_new(label);
+    } else {
+        if(label < node->label) {
+            node->left = node_t_insert(node->left, label);
+        } else {
+            node->right = node_t_insert(node->right, label);
+        }
+    }
+    return node;
+}
+
+void
+node_t_preorder(node_t *node)
+{
+    if(NULL != node) {
+        printf("%d\n", node->label);
+        node_t_preorder(node->left);
+        node_t_preorder(node->right);
+    }
+}
+
+void
+node_t_inorder(node_t *node)
+{
+    if(NULL != node) {
+        node_t_inorder(node->left);
+        printf("%d\n", node->label);
+        node_t_inorder(node->right);
+    }
+}
+
+void
+node_t_postorder(node_t *node)
+{
+    if(NULL != node) {
+        node_t_postorder(node->left);
+        node_t_postorder(node->right);
+        printf("%d\n", node->label);
+    }
+}
+
+tree_t *
+tree_t_new()
+{
+    tree_t *tree = (tree_t *)malloc(sizeof(tree_t));
+    if(NULL != tree) {
+        tree->root = NULL;
+        tree->length = 0;
+    }
+    return tree;
+}
+
+void
+tree_t_delete(tree_t *tree)
+{
+}
+
+void
+tree_t_insert(tree_t *tree, int label)
+{
+    tree->root = node_t_insert(tree->root, label);
+}
+
+void
+tree_t_preorder(tree_t *tree)
+{
+    node_t_preorder(tree->root);
+}
+
+void
+tree_t_inorder(tree_t *tree)
+{
+    node_t_inorder(tree->root);
+}
+
+void
+tree_t_postorder(tree_t *tree)
+{
+    node_t_postorder(tree->root);
+}

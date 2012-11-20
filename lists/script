@@ -1,0 +1,1 @@
+cc -g list.c stack.c -o program
