@@ -1,70 +1,37 @@
+void
+bubblesort(int A[], unsigned int n)
+{
+  int i, j;
+
+  for(i = 0; i < n; i++) {
+    for(j = i; j < n; j++) {
+      if(A[i] > A[j]) {
+        int    t = A[j];
+            A[j] = A[i];
+            A[i] =    t;
+      }
+    }
+  }
+}
+
+
+
+#ifdef DEBUG
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#define BUFSIZE 1024
 
-struct list_t {
-    long size;
-    struct node_t *root;
-};
+int
+main(int argc, char **argv) {
+  int i, n;
+  int A[] = {1,3,4,2,5};
 
-struct node_t {
-    char *data;
-    struct node_t *next;
-};
+  n = sizeof(A)/sizeof(A[0]);
 
-void insert (struct list_t *, char *);
+  bubblesort(A, n);
 
-int main () {
-    char **lines = NULL;
-    char *line = NULL;
+  for(i = 0; i < n; i++) {
+    printf("%d\n", A[i]);
+  }
 
-    struct list_t list;
-        list.size = 0;
-        list.root = NULL;
-
-    char c;
-    char buf[BUFSIZE];
-    int i = -1;
-    while((c=getchar()) != EOF) {
-        if(++i>=BUFSIZE-1 || '\n'==c) {
-            line = malloc(sizeof(size_t) * (i+1));
-            buf[i] = '\0'; i = -1;
-            strcpy(line, buf);
-            insert(&list, line);
-        } else {
-            buf[i] = c;
-        }
-    }
-
-   struct node_t *ptr= list.root;
-   while(NULL != ptr->next) {
-        if(strcoll()) {
-        } else {
-        }
-   }
-
-    struct node_t *ptr = list.root;
-    while(NULL != ptr) {
-        puts(ptr->data);
-        ptr = ptr->next;
-    }
-
-    exit(EXIT_SUCCESS);
+  return 0;
 }
-
-void insert (struct list_t *list, char *data) {
-    struct node_t *node = (struct node_t *) malloc(sizeof(struct node_t));
-        node->data = data;
-        node->next = NULL;
-    if(NULL == list->root) {
-        list->root = node;
-    } else {
-        struct node_t *ptr = list->root;
-        while(NULL != ptr->next) {
-            ptr++;
-        }
-        ptr->next = node;
-    }
-    list->size++;
-}
+#endif

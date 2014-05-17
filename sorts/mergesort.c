@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void mymergesort(int A[], int i, int j);
+void mergesort(int A[], int i, int j);
 void merge(int A[], int i, int j, int x, int y);
 
 int main (void)
@@ -10,8 +10,8 @@ int main (void)
     int n = 9, i;
     for(i = 0; i < n; i++)
         printf("%d\n", A[i]); 
-    puts("mymergesort()");
-    mymergesort(A, 0, n - 1);
+    puts("mergesort()");
+    mergesort(A, 0, n - 1);
     for(i = 0; i < n; i++)
         printf("%d\n", A[i]); 
     exit(EXIT_SUCCESS);
@@ -42,7 +42,7 @@ void merge(int A[], int i, int j, int x, int y) {
     }
 }
 
-void mymergesort(int A[], int i, int j)
+void mergesort(int A[], int i, int j)
 {
     int n = (j - i + 1) / 2;
     int d = j - i; 
@@ -54,8 +54,8 @@ void mymergesort(int A[], int i, int j)
             A[j] = t;
         }
     } else {
-        mymergesort(A, i, i + n - 1);
-        mymergesort(A, i + n, j);
+        mergesort(A, i, i + n - 1);
+        mergesort(A, i + n, j);
         merge(A, i, i + n - 1, i + n, j);
     }
 }

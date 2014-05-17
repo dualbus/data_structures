@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void select_sort(int A[], int n) {
+void selectsort(int A[], int n) {
     int i, x, y;
     for(x = 0; x < (n - 1); x++) {
         i = x;
@@ -42,7 +42,7 @@ int main () {
         a[j] = atoi(b);
     }
     
-    select_sort(a, n);
+    selectsort(a, n);
     for(i = 0; i < n; i++) {
         printf("%d\n", a[i]);
     }
