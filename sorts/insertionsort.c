@@ -1,15 +1,19 @@
-void insertionsort(int A[], unsigned int n) {
+/*
+ *
+ */
+void
+insertionsort(int A[], unsigned int n)
+{
     int i, j;
 
     if(1 >= n) return;
 
-    for(i = 0; i < n; i++) {
-        int t = A[i];
-        for(j = i - 1; j >= 0; j--) {
-            if (A[j] <= t) break;
-            A[j+1] = A[j];
+    for(i = 1; i < n; i++) {
+        for(j = i; j > 0 && A[j-1] > A[j]; j--) {
+            int t  = A[j-1];
+            A[j-1] = A[j];
+              A[j] =    t;
         }
-        A[j+1] = t;
     }
 }
 
@@ -19,7 +23,9 @@ void insertionsort(int A[], unsigned int n) {
 #include <stdio.h>
 #include <stdlib.h>
 
-int main (void) {
+int
+main(int argc, char **argv)
+{
     int A[] = { 5, 5, 8, 3, 4, 7, 1, 3, 4 };
     int n = 9, i;
 

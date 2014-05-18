@@ -4,14 +4,15 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#define ITEMS 10000
+#define ITEMS 1000000
 
 
 
-void bubblesort (int A[], unsigned int n);
-void quicksort  (int A[], unsigned int i, unsigned int j);
+void bubblesort   (int A[], unsigned int n);
+void quicksort    (int A[], unsigned int i, unsigned int j);
+void insertionsort(int A[], unsigned int n);
+
 int  verify     (int A[], unsigned int n);
-
 
 unsigned int rng();
 void rng_seed(unsigned int, unsigned int, unsigned int);

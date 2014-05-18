@@ -6,9 +6,9 @@ bubblesort(int A[], unsigned int n)
   for(i = 0; i < n; i++) {
     for(j = i; j < n; j++) {
       if(A[i] > A[j]) {
-        int    t = A[j];
-            A[j] = A[i];
-            A[i] =    t;
+        int  t = A[j];
+          A[j] = A[i];
+          A[i] =    t;
       }
     }
   }
